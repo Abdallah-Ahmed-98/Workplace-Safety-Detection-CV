@@ -1,0 +1,9 @@
+[2025-01-24 00:21:36,348: INFO: stage_02_model_preparation_and_training: *******************]
+[2025-01-24 00:21:36,354: INFO: stage_02_model_preparation_and_training: >>>>>> stage Model preparation and training started <<<<<<]
+[2025-01-24 00:21:36,364: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-01-24 00:21:36,377: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-01-24 00:21:36,379: INFO: common: created directory at: artifacts]
+[2025-01-24 00:21:36,379: INFO: common: created directory at: artifacts/model_preparation_and_training]
+[2025-01-25 01:09:21,992: INFO: stage_02_model_preparation_and_training: >>>>>> stage Model preparation and training completed <<<<<<
+
+x==========x]

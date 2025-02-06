@@ -1,0 +1,81 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/CV/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 8dabcf0dd1bdd2eafa5fd162b0200ab4
+      size: 793
+    - path: src/CV/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 373aeb6dfd92ea237ef41436c3442a5d
+      size: 942
+    outs:
+    - path: artifacts/data_ingestion/Workplace-Safety-Dataset
+      hash: md5
+      md5: 134274739ede133800274965b49180d0.dir
+      size: 101722518
+      nfiles: 3211
+  model_preparation_and_training:
+    cmd: python src/CV/pipeline/stage_02_model_preparation_and_training.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 8dabcf0dd1bdd2eafa5fd162b0200ab4
+      size: 793
+    - path: src/CV/pipeline/stage_02_model_preparation_and_training.py
+      hash: md5
+      md5: 2a0d9103a65311ffc78fc19a45a751a2
+      size: 1056
+    params:
+      params.yaml:
+        AUGMENTATION: false
+        AUGMENTATION_HYPERPARAMS.degrees: 0
+        AUGMENTATION_HYPERPARAMS.fliplr: 0.5
+        AUGMENTATION_HYPERPARAMS.flipud: 0
+        AUGMENTATION_HYPERPARAMS.hsv_h: 0.015
+        AUGMENTATION_HYPERPARAMS.hsv_s: 0.8
+        AUGMENTATION_HYPERPARAMS.hsv_v: 0.1
+        AUGMENTATION_HYPERPARAMS.mixup: 1
+        AUGMENTATION_HYPERPARAMS.momentum: 0.95
+        AUGMENTATION_HYPERPARAMS.mosaic: 0
+        AUGMENTATION_HYPERPARAMS.optimizer: SGD
+        AUGMENTATION_HYPERPARAMS.patience: 30
+        AUGMENTATION_HYPERPARAMS.perspective: 0.001
+        AUGMENTATION_HYPERPARAMS.scale: 0.7
+        AUGMENTATION_HYPERPARAMS.shear: 25
+        AUGMENTATION_HYPERPARAMS.translate: 0.1
+        AUGMENTATION_HYPERPARAMS.warmup_bias_lr: 0.1
+        AUGMENTATION_HYPERPARAMS.warmup_epochs: 10
+        AUGMENTATION_HYPERPARAMS.warmup_momentum: 0.5
+        AUGMENTATION_HYPERPARAMS.weight_decay: 0.0001
+        BATCH_SIZE: 16
+        DEVICE: cuda:0
+        EPOCHS: 1000
+        IMAGE_SIZE: 640
+        LEARNING_RATE_0: 0.01
+        LEARNING_RATE_F: 0.01
+    outs:
+    - path: artifacts/model_preparation_and_training
+      hash: md5
+      md5: bccdd5afa3dd45c5b290ac255a27aea4.dir
+      size: 27420787
+      nfiles: 23
+  evaluation:
+    cmd: python src/CV/pipeline/stage_03_model_evaluation.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 8dabcf0dd1bdd2eafa5fd162b0200ab4
+      size: 793
+    - path: src/CV/pipeline/stage_03_model_evaluation.py
+      hash: md5
+      md5: 0c46e4d066351b4e3a333504ce714800
+      size: 793
+    outs:
+    - path: artifacts/evaluation
+      hash: md5
+      md5: a073f40522690edbcb836750c371ed9b.dir
+      size: 5893130
+      nfiles: 12

@@ -1,0 +1,52 @@
+stages:
+  data_ingestion:
+    cmd: python src/CV/pipeline/stage_01_data_ingestion.py
+    deps:
+      - src/CV/pipeline/stage_01_data_ingestion.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_ingestion/Workplace-Safety-Dataset
+
+  model_preparation_and_training:
+    cmd: python src/CV/pipeline/stage_02_model_preparation_and_training.py
+    deps:
+      - src/CV/pipeline/stage_02_model_preparation_and_training.py
+      - config/config.yaml
+    params:
+      - DEVICE
+      - IMAGE_SIZE
+      - BATCH_SIZE
+      - EPOCHS
+      - LEARNING_RATE_0
+      - LEARNING_RATE_F
+      - AUGMENTATION
+      - AUGMENTATION_HYPERPARAMS.patience
+      - AUGMENTATION_HYPERPARAMS.momentum
+      - AUGMENTATION_HYPERPARAMS.weight_decay
+      - AUGMENTATION_HYPERPARAMS.warmup_epochs
+      - AUGMENTATION_HYPERPARAMS.warmup_momentum
+      - AUGMENTATION_HYPERPARAMS.warmup_bias_lr
+      - AUGMENTATION_HYPERPARAMS.optimizer
+      - AUGMENTATION_HYPERPARAMS.hsv_h
+      - AUGMENTATION_HYPERPARAMS.hsv_s
+      - AUGMENTATION_HYPERPARAMS.hsv_v
+      - AUGMENTATION_HYPERPARAMS.degrees
+      - AUGMENTATION_HYPERPARAMS.translate
+      - AUGMENTATION_HYPERPARAMS.scale
+      - AUGMENTATION_HYPERPARAMS.mosaic
+      - AUGMENTATION_HYPERPARAMS.mixup
+      - AUGMENTATION_HYPERPARAMS.flipud
+      - AUGMENTATION_HYPERPARAMS.fliplr
+      - AUGMENTATION_HYPERPARAMS.shear
+      - AUGMENTATION_HYPERPARAMS.perspective
+    outs:
+      - artifacts/model_preparation_and_training
+
+
+  evaluation:
+    cmd: python src/CV/pipeline/stage_03_model_evaluation.py
+    deps:
+      - src/CV/pipeline/stage_03_model_evaluation.py
+      - config/config.yaml
+    outs:
+      - artifacts/evaluation

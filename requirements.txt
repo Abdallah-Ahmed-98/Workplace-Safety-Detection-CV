@@ -1,0 +1,20 @@
+ultralytics
+torch
+torchvision
+gdown
+dvc
+setuptools
+notebook
+numpy
+python-box
+pyYAML
+tqdm
+ensure
+types-PyYAML
+scipy
+gradio
+httpx
+httpcore
+h11
+opencv-python
+-e .
